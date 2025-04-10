@@ -30,5 +30,11 @@ class Ball(Turtle):
     
         
         self.goto(x, y)
+    
+    def reset(self):
+        self.penup()
+        self.x_factor = 1
+        self.y_factor = 1
+        self.goto(0, 0)
 
 
