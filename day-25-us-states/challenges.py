@@ -5,7 +5,7 @@ class Challenges:
 
     # load data with csv library
     def challenge_1():
-        with open("day-25-us-states/weather_data.csv","r") as weather_file:
+        with open("weather_data.csv","r") as weather_file:
             weather_data = csv.reader(weather_file)
             temperatures = []
             for row in weather_data:
@@ -17,7 +17,7 @@ class Challenges:
 
     # load data with pandas library
     def challenge_2():
-        data = pandas.read_csv("day-25-us-states/weather_data.csv")
+        data = pandas.read_csv("weather_data.csv")
         print(data)
 
     
