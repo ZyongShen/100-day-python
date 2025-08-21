@@ -2,26 +2,29 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-def fill_forms(processed_data):
+def fill_forms(processed_data, form_url):
     driver = webdriver.Chrome()
-    driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfhbI3cDLxOobzzloCQT91Xp9DkxeKwMRIhiHSsCvaziSvsVg/viewform")
+    driver.get(form_url)
 
-    time.sleep(1)
+    time.sleep(2)
 
     for listing in processed_data:
 
-        short_answers_input = driver.find_elements(By.CLASS_NAME, "whsOnd zHQkBf")
+        short_answer_inputs = driver.find_elements(By.XPATH, "//input[@jsname='YPqjbf']")
+        
+        short_answer_inputs[0].send_keys(listing["address"])
+        short_answer_inputs[1].send_keys(listing["price"])
+        short_answer_inputs[2].send_keys(listing["link"])
 
-        print(short_answers_input)
+        submit_button = driver.find_element(By.XPATH, "//div[@aria-label='Submit']")
+        submit_button.click()
 
-        # short_answers_input[0].send_keys(listing["address"])
-        # short_answers_input[1].send_keys(listing["price"])
-        # short_answers_input[2].send_keys(listing["link"])
+        time.sleep(1)
 
-        # submit_button = driver.find_elements(By.CLASS_NAME, "NPEfkd RveJvd snByac")
-        # submit_button.click()
+        new_submission_link = driver.find_element(By.PARTIAL_LINK_TEXT, "Submit another response")
+        new_submission_link.click()
 
-        time.sleep(5)
+        time.sleep(3)
 
-    
     driver.quit()
+

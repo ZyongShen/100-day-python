@@ -6,5 +6,6 @@ if __name__ == "__main__":
 
     processed_listings = process_listings(found_listings)
 
-    fill_forms(processed_listings)
+    form_url = input("Provide the form URL: ")
+    fill_forms(processed_listings, form_url)
 
